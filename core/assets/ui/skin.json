@@ -1,0 +1,125 @@
+{
+	"com.badlogic.gdx.graphics.Color": {
+		"white": { 
+			"r": 1,
+			"g": 1,
+			"b": 1,
+			"a": 1
+		},
+		"hover": { 
+			"r": 0.9,
+			"g": 1,
+			"b": 0.6,
+			"a": 1
+		},
+		"click": {
+			"r": 0.9,
+			"g": 1,
+			"b": 0,
+			"a": 1
+		},
+		"grey": { 
+			"r": 0.5,
+			"g": 0.5,
+			"b": 0.5,
+			"a": 1
+		},
+		"lightgrey": { 
+			"r": 0.7,
+			"g": 0.7,
+			"b": 0.7,
+			"a": 1
+		},
+		"black": { 
+			"r": 0,
+			"g": 0,
+			"b": 0,
+			"a": 1
+		}
+	},
+	
+	"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+		"font14": { 
+			"file": "ui/fonts/14.fnt"
+		},
+		"font16": { 
+			"file": "ui/fonts/16.fnt"
+		},
+		"font18": { 
+			"file": "ui/fonts/18.fnt"
+		}
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+		"button14": {
+			"up": "button",
+			"down": "button",
+			"font": font14,
+			"fontColor": white,
+			"overFontColor": hover,
+			"downFontColor": click,
+			"disabledFontColor": grey
+		},
+		"button16": {
+			"up": "button",
+			"down": "button",
+			"font": font16,
+			"fontColor": white,
+			"overFontColor": hover,
+			"downFontColor": click,
+			"disabledFontColor": grey
+		},
+		"button18": {
+			"up": "button",
+			"down": "button",
+			"font": font18,
+			"fontColor": white,
+			"overFontColor": hover,
+			"downFontColor": click,
+			"disabledFontColor": grey
+		}
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+		"trans14": {
+			"font": font14,
+			"fontColor": black
+		},
+		"trans16": {
+			"font": font16,
+			"fontColor": black
+		},
+		"trans18": {
+			"font": font18,
+			"fontColor": black
+		}
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle": {
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle": {
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle": {
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle": {
+		"health": {
+			"background": "bg1",
+			"knobBefore": "button"
+		}
+	}
+}

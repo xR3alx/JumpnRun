@@ -1,0 +1,53 @@
+/////////////////////////////////////////////////
+//////////////////// ENGLISH ////////////////////
+/////////////////////////////////////////////////
+EN_EXIT=Exit
+EN_BACK=Back
+EN_CONTINUEGAME=Continue
+
+EN_MAIN_PLAY=Play
+EN_MAIN_SETTINGS=Settings
+
+EN_INGAME_PAUSE=Pause
+EN_INGAME_RESTARTGAME=Restart
+EN_INGAME_MAINMENU=Main menu
+EN_INGAME_GAMEOVER=You died!
+EN_INGAME_CLOSEBIGTEXT=Close
+
+EN_SETTINGS_LANG=Language:
+EN_SETTINGS_MASTERVOLUME=Volume: 
+EN_SETTINGS_CONTROL=Control
+EN_SETTINGS_LEFT=Left: 
+EN_SETTINGS_RIGHT=Right: 
+EN_SETTINGS_UP=Up: 
+EN_SETTINGS_DOWN=Down: 
+
+
+
+
+
+
+
+////////////////////////////////////////////////
+//////////////////// GERMAN ////////////////////
+////////////////////////////////////////////////
+DE_EXIT=Beenden
+DE_BACK=Zurueck
+DE_CONTINUEGAME=Weiterspielen
+
+DE_MAIN_PLAY=Spielen
+DE_MAIN_SETTINGS=Einstellungen
+
+DE_INGAME_PAUSE=Pause
+DE_INGAME_RESTARTGAME=Neustart
+DE_INGAME_MAINMENU=Hauptmenue
+DE_INGAME_GAMEOVER=Du bist gestorben!
+DE_INGAME_CLOSEBIGTEXT=Schliessen
+
+DE_SETTINGS_LANG=Sprache: 
+DE_SETTINGS_MASTERVOLUME=Lautstaerke: 
+DE_SETTINGS_CONTROL=Steuerung
+DE_SETTINGS_LEFT=Links: 
+DE_SETTINGS_RIGHT=Rechts: 
+DE_SETTINGS_UP=Hoch: 
+DE_SETTINGS_DOWN=Runter: 
