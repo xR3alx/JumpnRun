@@ -14,11 +14,17 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.brashmonkey.spriter.Data;
+import com.brashmonkey.spriter.SCMLReader;
+import com.deldaryan.advanced.AdvancedSpriterPlayer;
 import com.deldaryan.main.Main;
 import com.deldaryan.physic.WorldManager;
+import com.deldaryan.utils.SpriterDrawer;
+import com.deldaryan.utils.SpriterLoader;
 
 public class AssetLoader {
 
+	private HashMap<String, AdvancedSpriterPlayer> spriterPlayers;
 	private HashMap<String, TextureAtlas> atlas;
 	private HashMap<String, ShaderProgram> shaders;
 	private HashMap<String, Texture> textures;
@@ -38,10 +44,11 @@ public class AssetLoader {
 		particles = new HashMap<String, ParticleEffect>();
 		music = new HashMap<String, Music>();
 		sounds = new HashMap<String, Sound>();
+		spriterPlayers = new HashMap<String, AdvancedSpriterPlayer>();
 	}
 	
 	
-	public void load(String[] atlases, String[] animations, String[] textures, String[] shaders, String[] particleeffects, String[] musics, String[] sounds, String[] maps) {
+	public void load(String[] atlases, String[] animations, String[] scmlAnimations, String[] textures, String[] shaders, String[] particleeffects, String[] musics, String[] sounds, String[] maps) {
 		if(atlases.length != 0) {
 			for (FileHandle file : Gdx.files.internal(Main.DESKTOP_PATH_MODIFIER + "gfx/").list()) {
 				if(file.extension().equals("pack") || file.extension().equals("atlas")) {
@@ -63,6 +70,26 @@ public class AssetLoader {
 						if(!atlas.containsKey(string)) {
 							if(file.nameWithoutExtension().equals(string)) {
 								atlas.put(string, new TextureAtlas(file));
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if(scmlAnimations.length != 0) {
+			for (FileHandle file : Gdx.files.internal(Main.DESKTOP_PATH_MODIFIER + "animations/spriter/").list()) {
+				if(file.extension().equals("scml")) {
+					for (String string : scmlAnimations) {
+						if(!spriterPlayers.containsKey(string)) {
+							if(file.nameWithoutExtension().equals(string)) {
+								SCMLReader reader = new SCMLReader(file.read());
+								Data data = reader.getData();
+								
+								SpriterLoader loader = new SpriterLoader(data);
+								loader.load(file.file());
+								
+								spriterPlayers.put(string, new AdvancedSpriterPlayer(data.getEntity(0), loader, new SpriterDrawer(loader)));
 							}
 						}
 					}
@@ -177,6 +204,7 @@ public class AssetLoader {
 			unloadAllMusic();
 			unloadAllSounds();
 			unloadAllShaders();
+			unloadAllSpritePlayer();
 		}
 	}
 	
@@ -211,7 +239,6 @@ public class AssetLoader {
 		}
 	}
 	
-	
 	public void unloadAllParticleEffects() {
 		for (String string : particles.keySet()) {
 			particles.get(string).dispose();
@@ -240,6 +267,28 @@ public class AssetLoader {
 		shaders.clear();
 	}
 	
+	public void unloadAllSpritePlayer() {
+		for (String string : spriterPlayers.keySet()) {
+			spriterPlayers.get(string).getLoader().dispose();
+		}
+		spriterPlayers.clear();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	public AdvancedSpriterPlayer getSpritePlayer(String key) {
+		return spriterPlayers.get(key);
+	}
+	
+	public boolean hasSpritePlayer(String key) {
+		return spriterPlayers.containsKey(key);
+	}
+	
 	
 	
 	public ShaderProgram getShader(String key) {
@@ -255,7 +304,7 @@ public class AssetLoader {
 	}
 	
 	
-	
+
 	public Texture getTexture(String key) {
 		return textures.get(key);
 	}

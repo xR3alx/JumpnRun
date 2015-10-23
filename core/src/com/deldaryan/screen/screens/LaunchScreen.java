@@ -25,6 +25,7 @@ public class LaunchScreen implements Screen {
 			Main.getAssetLoader().load(
 					new String[] {}, // atlases
 					new String[] {}, // animations
+					new String[] {}, // SCML animations
 					new String[] {"deldaryan_games"}, // textures
 					new String[] {}, // shaders
 					new String[] {}, // particleeffects

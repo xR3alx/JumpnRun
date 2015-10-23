@@ -64,6 +64,7 @@ public class GameScreen implements Screen, ContactListener {
 		Main.getAssetLoader().load(
 				new String[] {"projectiles", "doors", "story_imgs"}, // atlases
 				new String[] {"enemy", "enemy_shield", "enemy_boss", "player", "love_particle", "pickups"}, // animations
+				new String[] {}, // SCML animations
 				new String[] {"gamebackground", "platform"}, // textures
 				new String[] {}, // shaders
 				new String[] {"blood"}, // particleeffects

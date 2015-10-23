@@ -34,6 +34,7 @@ public class MainScreen implements Screen {
 			Main.getAssetLoader().load(
 					new String[] {}, // atlases
 					new String[] {}, // animations
+					new String[] {}, // SCML animations
 					new String[] {}, // textures
 					new String[] {}, // shaders
 					new String[] {}, // particleeffects
