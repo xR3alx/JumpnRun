@@ -31,7 +31,6 @@ public class DebugDisplay {
 	}
 
 	public void render() {
-
 		shapeRenderer.setProjectionMatrix(Main.getGraphicsManager().getGameCamera().combined);
 		shapeRenderer.begin();
 			// draw pixel grid

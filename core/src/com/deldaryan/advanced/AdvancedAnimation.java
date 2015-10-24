@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class AdvancedAnimation extends Animation {
@@ -11,9 +12,11 @@ public class AdvancedAnimation extends Animation {
 	private boolean flipX, flipY, render;
 	private float width, height,
 				offsetX, offsetY,
-				time;
+				time,
+				degrees;
 	private Color tint;
 	private ShaderProgram shader;
+	private Vector2 position;
 	
 	public AdvancedAnimation(float frameDuration, Array<? extends TextureRegion> keyFrames) {
 		super(frameDuration, keyFrames);
@@ -130,5 +133,21 @@ public class AdvancedAnimation extends Animation {
 	
 	public Color getTint() {
 		return tint;
+	}
+
+	public Vector2 getPosition() {
+		return position;
+	}
+	
+	public void setPosition(Vector2 position) {
+		this.position = position;
+	}
+	
+	public float getDegrees() {
+		return degrees;
+	}
+	
+	public void setDegrees(float degrees) {
+		this.degrees = degrees;
 	}
 }

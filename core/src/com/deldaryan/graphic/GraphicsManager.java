@@ -1,14 +1,11 @@
 package com.deldaryan.graphic;
 
-import java.util.HashMap;
-
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.deldaryan.advanced.AdvancedCamera;
-import com.deldaryan.advanced.AdvancedSprite;
 import com.deldaryan.main.Main;
 
 public class GraphicsManager {
@@ -17,7 +14,7 @@ public class GraphicsManager {
 	private OrthographicCamera uiCamera;
 	private AdvancedCamera gameCamera;
 	
-	private HashMap<Integer, AdvancedSprite> sprites;
+	private RenderManager renderManager;
 	private Matrix4 defaultProjectionMatrix4;
 	private SpriteBatch spriteBatch;
 	
@@ -29,13 +26,25 @@ public class GraphicsManager {
 		gameCamera = new AdvancedCamera();
 		gameCamera.setToOrtho(false, 23.99f, 23.99f);
 		
-		
 		spriteBatch = new SpriteBatch();
+		renderManager = new RenderManager(spriteBatch);
+		renderManager.addLayer("background");
+		renderManager.addLayer("midground");
+		renderManager.addLayer("foreground");
+		renderManager.addLayer("ui");
+		renderManager.setLayerOrder(new String[] {"background", "midground", "foreground", "ui"});
+		
 		defaultProjectionMatrix4 = new Matrix4(spriteBatch.getProjectionMatrix());
-		sprites = new HashMap<Integer, AdvancedSprite>();
 		
 		stage = new Stage(viewport);
 		Main.getInputMultiplexer().addProcessor(stage);
+		
+		
+		renderManager.getLayer("ui").addRenderObject(stage);
+		renderManager.getLayer("ui").setProjectionMatrix(uiCamera.combined);
+		renderManager.getLayer("background").setProjectionMatrix(gameCamera.combined);
+		renderManager.getLayer("midground").setProjectionMatrix(gameCamera.combined);
+		renderManager.getLayer("foreground").setProjectionMatrix(gameCamera.combined);
 	}
 	
 	public void update() {
@@ -45,24 +54,7 @@ public class GraphicsManager {
 	}
 	
 	public void render() {
-		renderSprites();
-		stage.draw();
-	}
-	
-	private void renderSprites() {
-		for (int i = 0; i < sprites.size(); i++) {
-			AdvancedSprite sprite = sprites.get(i);
-			if(sprite.hasShader()) {
-				spriteBatch.setShader(sprite.getShader());
-			}
-			
-			spriteBatch.setProjectionMatrix(gameCamera.combined);
-			spriteBatch.begin();
-				sprite.getSprite().draw(spriteBatch);
-			spriteBatch.end();
-			
-			spriteBatch.setShader(null);
-		}
+		renderManager.render();
 	}
 	
 	
@@ -86,16 +78,8 @@ public class GraphicsManager {
 		return spriteBatch;
 	}
 	
-	public void addSprite(int id, AdvancedSprite sprite) {
-		sprites.put(id, sprite);
-	}
-	
-	public boolean removeSprite(int id) {
-		if(sprites.containsKey(id)) {
-			sprites.remove(id);
-			return true;
-		}
-		return false;
+	public RenderManager getRenderManager() {
+		return renderManager;
 	}
 	
 	
