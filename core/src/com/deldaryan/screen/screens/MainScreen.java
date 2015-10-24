@@ -9,12 +9,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.deldaryan.main.Main;
 
 public class MainScreen implements Screen {
 
 	private Table table;
-	private Image titleBackgroundImage, titleImage;
+	private Image titleBackgroundImage, titleImage, buttonsBackgroungImage;
 	private TextButton playTextButton, settingsTextButton, exitTextButton;
 	
 	private int changeToMenu;
@@ -36,7 +37,7 @@ public class MainScreen implements Screen {
 					new String[] {}, // atlases
 					new String[] {}, // animations
 					new String[] {}, // SCML animations
-					new String[] {"title_bg", "title"}, // textures
+					new String[] {"title_bg", "title", "menu_bg"}, // textures
 					new String[] {}, // shaders
 					new String[] {}, // particleeffects
 					new String[] {}, // musics
@@ -59,10 +60,10 @@ public class MainScreen implements Screen {
 		if(changeToMenu != 0) {
 			if(!exitTextButton.hasActions()) {
 				if(changeToMenu == 1) {
-					Main.getScreenManager().changeScreenTo("settings");
+//					Main.getScreenManager().changeScreenTo("settings");
 				}
 				else if(changeToMenu == 2) {
-					Main.getScreenManager().changeScreenTo("game");
+//					Main.getScreenManager().changeScreenTo("game");
 				}
 				else if(changeToMenu == 3) {
 					Gdx.app.exit();
@@ -101,20 +102,24 @@ public class MainScreen implements Screen {
 
 		titleBackgroundImage = new Image(Main.getAssetLoader().getTexture("title_bg"));
 		titleImage = new Image(Main.getAssetLoader().getTexture("title"));
+		buttonsBackgroungImage = new Image(Main.getAssetLoader().getTexture("menu_bg"));
+		buttonsBackgroungImage.setScale(0.75f);
+		buttonsBackgroungImage.setPosition(Main.UI_WIDTH / 2 - buttonsBackgroungImage.getWidth() * 0.75f / 2, -10);
 		playTextButton = new TextButton(Main.getLanguageFile().get("MAIN_PLAY"), Main.getAssetLoader().getSkin(), "button16");
 		settingsTextButton = new TextButton(Main.getLanguageFile().get("MAIN_SETTINGS"), Main.getAssetLoader().getSkin(), "button16");
 		exitTextButton = new TextButton(Main.getLanguageFile().get("EXIT"), Main.getAssetLoader().getSkin(), "button16");
 		
 		Table buttons = new Table();
 		buttons.add(titleImage).row();
-		buttons.add(playTextButton).padBottom(20).padTop(25).row();
-		buttons.add(settingsTextButton).padBottom(20).row();
-		buttons.add(exitTextButton);
+		buttons.add(playTextButton).padBottom(20).width(400).padTop(25).row();
+		buttons.add(settingsTextButton).padBottom(20).width(400).row();
+		buttons.add(exitTextButton).width(400);
 		
 		table.add(buttons).expand();
 		
 		Main.getGraphicsManager().getStage().clear();
 		Main.getGraphicsManager().getStage().addActor(titleBackgroundImage);
+		Main.getGraphicsManager().getStage().addActor(buttonsBackgroungImage);
 		Main.getGraphicsManager().getStage().addActor(table);
 		
 		
