@@ -13,10 +13,8 @@ import com.deldaryan.graphic.GraphicsManager;
 import com.deldaryan.map.MapManager;
 import com.deldaryan.physic.WorldManager;
 import com.deldaryan.screen.ScreenManager;
-import com.deldaryan.screen.screens.GameScreen;
 import com.deldaryan.screen.screens.LaunchScreen;
 import com.deldaryan.screen.screens.MainScreen;
-import com.deldaryan.screen.screens.SettingsScreen;
 import com.deldaryan.utils.CamController;
 import com.deldaryan.utils.DataObject;
 import com.deldaryan.utils.DebugDisplay;
@@ -43,7 +41,7 @@ public class Main extends Game {
 	
 	public static String DESKTOP_PATH_MODIFIER;
 	public static final int WORLD_WIDTH = 128, WORLD_HEIGHT = 128,
-							UI_WIDTH = 364, UI_HEIGHT = 256;
+							UI_WIDTH = 1080, UI_HEIGHT = 720;
 	
 	public Main(String desktopPathModifier) {
 		DESKTOP_PATH_MODIFIER = desktopPathModifier;
@@ -60,7 +58,7 @@ public class Main extends Game {
 		
 		worldManager = new WorldManager();
 		entityManager = new EntityManager();
-		graphicsManager = new GraphicsManager(new FitViewport(WORLD_WIDTH * 2, WORLD_HEIGHT * 2));
+		graphicsManager = new GraphicsManager(new FitViewport(UI_WIDTH, UI_HEIGHT));
 		mapManager = new MapManager();
 		screenManager = new ScreenManager();
 		assetLoader = new AssetLoader();
@@ -70,8 +68,8 @@ public class Main extends Game {
 		
 		
 		screenManager.addScreen("main", new MainScreen());
-		screenManager.addScreen("settings", new SettingsScreen());
-		screenManager.addScreen("game", new GameScreen());
+//		screenManager.addScreen("settings", new SettingsScreen());
+//		screenManager.addScreen("game", new GameScreen());
 		screenManager.addScreen("launch", new LaunchScreen());
 		screenManager.changeScreenTo("launch");
 		
@@ -84,6 +82,7 @@ public class Main extends Game {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		graphicsManager.update();
+		
 		super.render();
 		graphicsManager.render();
 		

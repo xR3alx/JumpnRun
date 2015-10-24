@@ -52,8 +52,8 @@
 	
 	"com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
 		"button14": {
-			"up": "button",
-			"down": "button",
+			"up": "btn_up",
+			"down": "btn_down",
 			"font": font14,
 			"fontColor": white,
 			"overFontColor": hover,
@@ -61,8 +61,8 @@
 			"disabledFontColor": grey
 		},
 		"button16": {
-			"up": "button",
-			"down": "button",
+			"up": "btn_up",
+			"down": "btn_down",
 			"font": font16,
 			"fontColor": white,
 			"overFontColor": hover,
@@ -70,8 +70,8 @@
 			"disabledFontColor": grey
 		},
 		"button18": {
-			"up": "button",
-			"down": "button",
+			"up": "btn_up",
+			"down": "btn_down",
 			"font": font18,
 			"fontColor": white,
 			"overFontColor": hover,
@@ -118,8 +118,8 @@
 	
 	"com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle": {
 		"health": {
-			"background": "bg1",
-			"knobBefore": "button"
+			"background": "btn_down",
+			"knobBefore": "btn_down"
 		}
 	}
 }

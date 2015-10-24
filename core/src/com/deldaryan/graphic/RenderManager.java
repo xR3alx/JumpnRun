@@ -23,7 +23,9 @@ public class RenderManager {
 	
 	public void render() {
 		for (String string : layerOrder) {
-			getLayer(string).render(spriteBatch);
+			if(hasLayer(string)) {
+				getLayer(string).render(spriteBatch);
+			}
 		}
 	}
 	

@@ -3,9 +3,11 @@ package com.deldaryan.graphic;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.objects.TextureMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.deldaryan.advanced.AdvancedAnimation;
@@ -22,7 +24,7 @@ public class Layer {
 	private ArrayList<Object> renderObjs;
 	private Matrix4 projectionMatrix;
 	
-	private boolean enabled;
+	private boolean enabled = true;
 	
 	public Layer() {
 		renderObjs = new ArrayList<Object>();
@@ -30,7 +32,9 @@ public class Layer {
 	
 	public void render(SpriteBatch batch) {
 		if(isEnabled()) {
-			batch.setProjectionMatrix(projectionMatrix);
+			if(projectionMatrix != null) {
+				batch.setProjectionMatrix(projectionMatrix);
+			}
 			
 			for (Object object : renderObjs) {
 				if(object instanceof AdvancedSprite) {
@@ -85,6 +89,10 @@ public class Layer {
 					
 					spriterPlayer.draw(batch);
 				}
+				else if(object instanceof ParticleEffect) {
+					ParticleEffect effect = (ParticleEffect) object;
+					effect.draw(batch);
+				}
 				else if(object instanceof Stage) {
 					Stage stage = (Stage) object;
 					stage.draw();
@@ -92,6 +100,10 @@ public class Layer {
 				else if(object instanceof RayHandler) {
 					RayHandler rayHandler = (RayHandler) object;
 					rayHandler.render();
+				}
+				else if(object instanceof TiledMapTileLayer) {
+					TiledMapTileLayer tileLayer = (TiledMapTileLayer) object;
+					Main.getMapManager().renderLayer(tileLayer);
 				}
 				else if(object instanceof TextureMapObject) {
 					TextureMapObject texObj = (TextureMapObject) object;

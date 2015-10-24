@@ -28,23 +28,16 @@ public class GraphicsManager {
 		
 		spriteBatch = new SpriteBatch();
 		renderManager = new RenderManager(spriteBatch);
-		renderManager.addLayer("background");
-		renderManager.addLayer("midground");
-		renderManager.addLayer("foreground");
 		renderManager.addLayer("ui");
-		renderManager.setLayerOrder(new String[] {"background", "midground", "foreground", "ui"});
+		renderManager.setLayerOrder(new String[] {"ui"});
 		
 		defaultProjectionMatrix4 = new Matrix4(spriteBatch.getProjectionMatrix());
-		
 		stage = new Stage(viewport);
 		Main.getInputMultiplexer().addProcessor(stage);
 		
 		
 		renderManager.getLayer("ui").addRenderObject(stage);
 		renderManager.getLayer("ui").setProjectionMatrix(uiCamera.combined);
-		renderManager.getLayer("background").setProjectionMatrix(gameCamera.combined);
-		renderManager.getLayer("midground").setProjectionMatrix(gameCamera.combined);
-		renderManager.getLayer("foreground").setProjectionMatrix(gameCamera.combined);
 	}
 	
 	public void update() {
