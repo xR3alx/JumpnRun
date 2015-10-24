@@ -7,12 +7,14 @@ import com.deldaryan.main.Main;
 import com.deldaryan.utils.SpriterDrawer;
 import com.deldaryan.utils.SpriterLoader;
 
-@SuppressWarnings("unused")
 public class AdvancedSpriterPlayer extends Player {
 
-	private String shaderProgram;
 	private SpriterLoader loader;
 	private SpriterDrawer drawer;
+	
+
+	private float offsetX, offsetY;
+	private String shaderProgram;
 	
 	
 	
@@ -37,19 +39,33 @@ public class AdvancedSpriterPlayer extends Player {
 	
 	public void draw(SpriteBatch spriteBatch) {
 		drawer.setBatch(spriteBatch);
-		spriteBatch.begin();
-			if(hasShaderProgram()) {
-				spriteBatch.setShader(Main.getAssetLoader().getShader(getShaderProgram()));
-			}
-			else {
-				spriteBatch.setShader(null);
-			}
-			
-			drawer.draw(this);
-		spriteBatch.end();
+		if(hasShaderProgram()) {
+			spriteBatch.setShader(Main.getAssetLoader().getShader(getShaderProgram()));
+		}
+		else {
+			spriteBatch.setShader(null);
+		}
+		
+		drawer.draw(this);
 	}
 	
 	
+	
+	public float getOffsetX() {
+		return offsetX;
+	}
+	
+	public float getOffsetY() {
+		return offsetY;
+	}
+	
+	public void setOffsetX(float offsetX) {
+		this.offsetX = offsetX;
+	}
+	
+	public void setOffsetY(float offsetY) {
+		this.offsetY = offsetY;
+	}
 	
 	public SpriterDrawer getDrawer() {
 		return drawer;

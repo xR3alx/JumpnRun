@@ -57,7 +57,7 @@ public class ConfigFile {
 		}
 		
 		if(!has("window_width")) {
-			set("window_width", "" + 720);
+			set("window_width", "" + 1080);
 		}
 		if(!has("window_height")) {
 			set("window_height", "" + 720);

@@ -43,7 +43,7 @@ public class Main extends Game {
 	
 	public static String DESKTOP_PATH_MODIFIER;
 	public static final int WORLD_WIDTH = 128, WORLD_HEIGHT = 128,
-							UI_WIDTH = 256, UI_HEIGHT = 256;
+							UI_WIDTH = 364, UI_HEIGHT = 256;
 	
 	public Main(String desktopPathModifier) {
 		DESKTOP_PATH_MODIFIER = desktopPathModifier;

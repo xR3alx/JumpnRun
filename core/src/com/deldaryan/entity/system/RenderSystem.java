@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.deldaryan.entity.component.AnimationComponent;
 import com.deldaryan.entity.component.BodyComponent;
+import com.deldaryan.entity.component.SkeletonAnimationComponent;
 import com.deldaryan.entity.component.SpriteComponent;
 import com.deldaryan.main.Main;
 
@@ -24,6 +25,7 @@ public class RenderSystem extends IteratingSystem {
 	protected void processEntity(Entity entity, float deltaTime) {
 		AnimationComponent animation = entity.getComponent(AnimationComponent.class);
 		SpriteComponent sprite = entity.getComponent(SpriteComponent.class);
+		SkeletonAnimationComponent skeletonAnimation = entity.getComponent(SkeletonAnimationComponent.class);
 		BodyComponent bodyComp = entity.getComponent(BodyComponent.class);
 		
 		if(bodyComp.hasBodies()) {
@@ -31,6 +33,14 @@ public class RenderSystem extends IteratingSystem {
 			if(animation != null) {
 				spriteBatch.begin();
 					animation.render(spriteBatch, bodyComp.getCurrentBody().getPosition(), bodyComp.getCurrentBody().getAngle() * MathUtils.radiansToDegrees);
+				spriteBatch.end();
+			}
+			else if(skeletonAnimation != null) {
+				spriteBatch.begin();
+				skeletonAnimation.getPlayer().setPosition(
+						bodyComp.getCurrentBody().getPosition().x + skeletonAnimation.getPlayer().getOffsetX(),
+						bodyComp.getCurrentBody().getPosition().y + skeletonAnimation.getPlayer().getOffsetY());
+					skeletonAnimation.getPlayer().draw(spriteBatch);
 				spriteBatch.end();
 			}
 			else if(sprite != null) {
