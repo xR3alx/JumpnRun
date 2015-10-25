@@ -24,18 +24,34 @@ public class Layer {
 	private ArrayList<Object> renderObjs;
 	private Matrix4 projectionMatrix;
 	
+	private int priority;
 	private boolean enabled = true;
 	
-	public Layer() {
+	public Layer(int priority) {
 		renderObjs = new ArrayList<Object>();
 	}
 	
 	public void render(SpriteBatch batch) {
 		if(isEnabled()) {
+			ArrayList<Integer> objsToRemove = new ArrayList<Integer>();
+			for (int i = 0; i < renderObjs.size(); i++) {
+				Object obj = renderObjs.get(i);
+				
+				if(obj == null) {
+					objsToRemove.add(i);
+				}
+			}
+			for (Integer integer : objsToRemove) {
+				renderObjs.remove(integer);
+			}
+			
+			
+			
 			if(projectionMatrix != null) {
 				batch.setProjectionMatrix(projectionMatrix);
 			}
 			
+			batch.begin();
 			for (Object object : renderObjs) {
 				if(object instanceof AdvancedSprite) {
 					AdvancedSprite advSprite = (AdvancedSprite) object;
@@ -87,10 +103,12 @@ public class Layer {
 						batch.setShader(null);
 					}
 					
+					spriterPlayer.update();
 					spriterPlayer.draw(batch);
 				}
 				else if(object instanceof ParticleEffect) {
 					ParticleEffect effect = (ParticleEffect) object;
+					effect.update(Gdx.graphics.getDeltaTime());
 					effect.draw(batch);
 				}
 				else if(object instanceof Stage) {
@@ -99,7 +117,7 @@ public class Layer {
 				}
 				else if(object instanceof RayHandler) {
 					RayHandler rayHandler = (RayHandler) object;
-					rayHandler.render();
+					rayHandler.updateAndRender();
 				}
 				else if(object instanceof TiledMapTileLayer) {
 					TiledMapTileLayer tileLayer = (TiledMapTileLayer) object;
@@ -147,11 +165,16 @@ public class Layer {
 					sprite.draw(batch);
 				}
 			}
+			batch.end();
 		}
 	}
 
 	
 	
+	
+	public int getPriority() {
+		return priority;
+	}
 	
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;

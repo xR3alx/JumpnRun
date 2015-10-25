@@ -28,11 +28,12 @@ public class GraphicsManager {
 		
 		spriteBatch = new SpriteBatch();
 		renderManager = new RenderManager(spriteBatch);
-		renderManager.addLayer("ui");
+		renderManager.addLayer("ui", 1);
 		renderManager.setLayerOrder(new String[] {"ui"});
 		
 		defaultProjectionMatrix4 = new Matrix4(spriteBatch.getProjectionMatrix());
 		stage = new Stage(viewport);
+		stage.setDebugAll(true);
 		Main.getInputMultiplexer().addProcessor(stage);
 		
 		

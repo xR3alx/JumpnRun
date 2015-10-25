@@ -21,7 +21,7 @@
   <object id="12" gid="6" x="208" y="352" width="96" height="96"/>
  </objectgroup>
  <objectgroup color="#00ff00" name="entities">
-  <object id="14" type="0" x="176" y="160" width="16" height="16"/>
+  <object id="14" type="0" x="160" y="240" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff007f" name="collision">
   <object id="1" type="object" x="368" y="16">

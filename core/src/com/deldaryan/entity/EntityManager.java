@@ -12,6 +12,7 @@ import com.deldaryan.entity.component.BodyComponent;
 import com.deldaryan.entity.component.EntityComponent;
 import com.deldaryan.entity.component.LightComponent;
 import com.deldaryan.entity.component.ProjectileComponent;
+import com.deldaryan.entity.component.SkeletonAnimationComponent;
 import com.deldaryan.entity.component.SpriteComponent;
 import com.deldaryan.entity.component.VelocityComponent;
 import com.deldaryan.entity.component.WeaponComponent;
@@ -30,7 +31,7 @@ public class EntityManager {
 		engine = new Engine();
 		
 		engine.addSystem(new VelocitySystem(Family.all(EntityComponent.class, BodyComponent.class, VelocityComponent.class).get()));
-		engine.addSystem(new AnimationSystem(Family.all(EntityComponent.class, AnimationComponent.class, BodyComponent.class, VelocityComponent.class).get()));
+		engine.addSystem(new AnimationSystem(Family.all(EntityComponent.class, BodyComponent.class, VelocityComponent.class).one(AnimationComponent.class, SkeletonAnimationComponent.class).get()));
 		engine.addSystem(new RenderSystem(Family.one(AnimationComponent.class, SpriteComponent.class, LightComponent.class, BodyComponent.class).get()));
 		engine.addSystem(new EntitySystem(Family.one(AnimationComponent.class, BodyComponent.class, EntityComponent.class, ProjectileComponent.class,
 						SpriteComponent.class, VelocityComponent.class, WeaponComponent.class).get()));

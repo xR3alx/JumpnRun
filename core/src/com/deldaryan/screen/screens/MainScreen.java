@@ -60,10 +60,10 @@ public class MainScreen implements Screen {
 		if(changeToMenu != 0) {
 			if(!exitTextButton.hasActions()) {
 				if(changeToMenu == 1) {
-//					Main.getScreenManager().changeScreenTo("settings");
+					Main.getScreenManager().changeScreenTo("settings");
 				}
 				else if(changeToMenu == 2) {
-//					Main.getScreenManager().changeScreenTo("game");
+					Main.getScreenManager().changeScreenTo("game");
 				}
 				else if(changeToMenu == 3) {
 					Gdx.app.exit();

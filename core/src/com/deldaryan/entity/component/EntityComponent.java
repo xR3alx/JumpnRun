@@ -7,8 +7,8 @@ public class EntityComponent implements Component {
 
 	private String identifier = "";
 	private int entityType, stepTime;
-	private float health, maxHealth, timeExist;
-	private boolean removed, remove, removeWhenHeal0;
+	private float health, maxHealth, jumpStrength, jumpLength, jumpTime, timeExist;
+	private boolean isOnGround, jumping, removed, removeWhenHeal0, remove, fallen, jumpSoundPlayed, canJump;
 	private Vector2 speed;
 	
 	public EntityComponent(int entityType, float health, float maxHealth, Vector2 speed) {
@@ -28,6 +28,78 @@ public class EntityComponent implements Component {
 	
 	
 	
+	
+	
+	
+	
+	public float getJumpStrength() {
+		return jumpStrength;
+	}
+
+	public float getJumpLength() {
+		return jumpLength;
+	}
+
+	public float getJumpTime() {
+		return jumpTime;
+	}
+
+	public boolean isOnGround() {
+		return isOnGround;
+	}
+
+	public boolean isJumping() {
+		return jumping;
+	}
+
+	public boolean isFallen() {
+		return fallen;
+	}
+
+	public boolean isJumpSoundPlayed() {
+		return jumpSoundPlayed;
+	}
+
+	public boolean isCanJump() {
+		return canJump;
+	}
+
+	public void setEntityType(int entityType) {
+		this.entityType = entityType;
+	}
+
+	public void setJumpStrength(float jumpStrength) {
+		this.jumpStrength = jumpStrength;
+	}
+
+	public void setJumpLength(float jumpLength) {
+		this.jumpLength = jumpLength;
+	}
+	
+	public void setJumpTime(float jumpTime) {
+		this.jumpTime = jumpTime;
+	}
+
+	public void setOnGround(boolean isOnGround) {
+		this.isOnGround = isOnGround;
+	}
+
+	public void setJumping(boolean jumping) {
+		this.jumping = jumping;
+	}
+
+	public void setFallen(boolean fallen) {
+		this.fallen = fallen;
+	}
+
+	public void setJumpSoundPlayed(boolean jumpSoundPlayed) {
+		this.jumpSoundPlayed = jumpSoundPlayed;
+	}
+
+	public void setCanJump(boolean canJump) {
+		this.canJump = canJump;
+	}
+
 	public void setRemove(boolean remove) {
 		this.remove = remove;
 	}

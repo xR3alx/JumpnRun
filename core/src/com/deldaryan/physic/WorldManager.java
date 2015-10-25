@@ -25,7 +25,7 @@ public class WorldManager {
 	
 	private ArrayList<Body> bodiesToRemove;
 	
-	public static final int PIXELS_PER_METER = 16;
+	public static final int PIXELS_PER_METER = 64;
 	
 	private static final Vector2 GRAVITY = new Vector2(0, 0);
 	private static final boolean DO_SLEEP = true;

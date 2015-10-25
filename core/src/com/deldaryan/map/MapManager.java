@@ -121,7 +121,7 @@ public class MapManager {
 					renderLayer = Main.getGraphicsManager().getRenderManager().getLayer(layerName); 
 				}
 				else {
-					renderLayer = Main.getGraphicsManager().getRenderManager().addLayer(layerName);
+					renderLayer = Main.getGraphicsManager().getRenderManager().addLayer(layerName, 99);
 				}
 				
 				if(layer instanceof TiledMapTileLayer) {

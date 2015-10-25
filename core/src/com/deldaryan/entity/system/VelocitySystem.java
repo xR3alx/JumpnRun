@@ -23,6 +23,50 @@ public class VelocitySystem extends IteratingSystem {
 		
 
 		if(bodyComp.hasBodies()) {
+			////////////////////////////////////////////ON GROUND / FALLEN ////////////////////////////////////////
+			if(bodyComp.getCurrentBody().getLinearVelocity().y < -0.5f) {
+				entityComp.setFallen(true);
+			}
+			
+			if((bodyComp.getCurrentBody().getLinearVelocity().y < 0.01f
+					&& bodyComp.getCurrentBody().getLinearVelocity().y > -0.01f)
+					|| bodyComp.isOnPlatform()) {
+				if(entityComp.isFallen()) {
+					entityComp.setJumpSoundPlayed(false);
+					entityComp.setCanJump(true);
+					entityComp.setFallen(false);
+					entityComp.setOnGround(true);
+				}
+				}
+				else if(bodyComp.getCurrentBody().getLinearVelocity().y > 0.01f
+						|| bodyComp.getCurrentBody().getLinearVelocity().y < -0.01f) {
+					entityComp.setCanJump(false);
+					entityComp.setOnGround(false);
+			}
+
+
+			////////////////////////////////////////////////// JUMP ////////////////////////////////////////////////
+			if(entityComp.isJumping()) {
+				if(entityComp.getJumpTime() < entityComp.getJumpLength()) {
+					entityComp.setJumpTime(entityComp.getJumpTime()+1f);
+			
+					float timepast = 100f * entityComp.getJumpTime() / entityComp.getJumpLength();
+					float timepastInvert = 100f - timepast;
+					bodyComp.getCurrentBody().applyForceToCenter(0f, entityComp.getJumpStrength() * (timepastInvert * 0.01f), true);
+			
+					if(entityComp.getEntityType() == EntityType.PLAYER) {
+						if(!entityComp.isJumpSoundPlayed()) {
+							entityComp.setJumpSoundPlayed(true);
+//							Utils.playSound("jump", 0.13f);
+						}
+					}
+				}
+				else {
+					entityComp.setJumping(false);
+					entityComp.setJumpTime(0f);
+				}
+			}
+			
 			///////////////////////////////////////////// APPLY VELOCITY /////////////////////////////////////////////////
 			if(entityComp.getEntityType() == EntityType.PLAYER
 					/*

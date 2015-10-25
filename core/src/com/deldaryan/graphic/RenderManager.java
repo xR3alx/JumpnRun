@@ -1,5 +1,6 @@
 package com.deldaryan.graphic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,11 +8,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class RenderManager {
 
 	private HashMap<String, Layer> layers;
-	private String[] layerOrder;
+	private ArrayList<String> layerOrder;
 	private SpriteBatch spriteBatch;
 	
 	public RenderManager(SpriteBatch spriteBatch) {
 		layers = new HashMap<String, Layer>();
+		layerOrder = new ArrayList<String>();
 		this.spriteBatch = spriteBatch;
 	}
 	
@@ -43,8 +45,9 @@ public class RenderManager {
 		}
 	}
 	
-	public Layer addLayer(String key) {
-		return layers.put(key, new Layer());
+	public Layer addLayer(String key, int priority) {
+		checkLayerOrder(key, priority);
+		return layers.put(key, new Layer(priority));
 	}
 	
 	public boolean hasLayer(String key) {
@@ -60,15 +63,30 @@ public class RenderManager {
 	}
 
 	public void setLayerOrder(String[] layerOrder) {
-		this.layerOrder = layerOrder;
+		this.layerOrder.clear();
+		for (String string : layerOrder) {
+			this.layerOrder.add(string);
+		}
 	}
 	
-	public String[] getLayerOrder() {
+	public ArrayList<String> getLayerOrder() {
 		return layerOrder;
 	}
 	
 
 	public void dispose() {
 		spriteBatch.dispose();
+	}
+	
+	
+	
+	private void checkLayerOrder(String key, int priority) {
+		if(priority >= layerOrder.size()) {
+			layerOrder.add(key);
+		}
+		else {
+			layerOrder.set(priority, key);
+			checkLayerOrder(key, priority+1);
+		}
 	}
 }
