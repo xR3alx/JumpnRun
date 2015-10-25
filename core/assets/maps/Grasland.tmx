@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="Grasweg" tilewidth="32" tileheight="32" tilecount="30">
+  <image source="../Tileset - Gras/Tileset-Gras-160-160.png" width="192" height="160"/>
+ </tileset>
+ <layer name="Kachelebene 2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+  </data>
+ </layer>
+ <layer name="Kachelebene 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2sluhTAMheF0vJ3b23l+/8esK8Emog2JIDb2/0nWWSHBJscCUgIAAAAAAAAAAPDlWOZoyBOZU93bCe9C5nzIS5kr3dsJ707mdsi9zL3u7YT3LPM05IvMq+7thPcp8zHkl8y37u0Apoy7VZ7sWjrG3SpPdi0d426VJ7uWjnG3ypNdS8e4W+U5tWsdyBym+s7pfV0UO5mzVN85va+L4lrmJtV3Tu/roniQeUz1ndP7uijeZN5TXef0vC7vm+j9oi3vm+j9oi3vm+j9oi3vm+j9oi3vm7Ff6BVb6BVb6BVb6BVb/uqVX3SLLXSLLXSLLda6Zeq7wpz0cs7+1y0apr4rzMkI56xG1099V5iTEc5Zja6f+q4wJ7XP2R40un7qu8Kc1D5ne7DW9aX/CZZIy3uBta4v/U+wRG51L9Do+tL/BEvkVvcCja4v/U+wRGqfya00ur70P8ESqX0mt7LW9WvY0v5Q6vrWZ7HE0/7Q+iyWeNofWp/FEk/7Q+uzWOJpf2h9FsCiLe12EXja7TzwtNt54Gm388DTbgcAPay5b5P1uea+Tdbnmvs2WZ9r7ttkfa65b5O83wUAAAAAAAAAAAAAAAAAAACAuX4A8hBWHg==
+  </data>
+ </layer>
+</map>
