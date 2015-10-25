@@ -1,7 +1,7 @@
 # JumpnRun
 
 
-[br]Tiled Map[br/]
+<strong>Tiled Map<strong/>
 
 
 Die Reihenfolge in Tiled entspricht nicht der Reihenfolge wie sie im Spiel gezeichnet werden.
