@@ -72,9 +72,7 @@ public class GameScreen implements Screen, ContactListener {
 				new String[] {"jump", "key_pickup", "menu_hover", "normalprojectile_hit", "specialprojectile_hit", "step", "player_damage"}, // sounds
 				new String[] {} // maps
 		);
-		Main.getAssetLoader().loadAllTiledMaps();
-		Main.getMapManager().reset();
-		Main.getMapManager().load();
+//		Main.getMapManager().load();
 
 		Main.getGraphicsManager().getGameCamera().zoom = 1f;
 
@@ -91,8 +89,6 @@ public class GameScreen implements Screen, ContactListener {
 			updateInput();
 			Main.getWorldManager().update();
 		}
-		Main.getMapManager().setLayersToRender(new int[] {0, 1});
-		Main.getMapManager().render();
 		Main.getEntityManager().render();
 		Main.getWorldManager().render();
 		

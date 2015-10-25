@@ -14,7 +14,7 @@ public class AdvancedSpriterPlayer extends Player {
 	
 
 	private float offsetX, offsetY;
-	private String shaderProgram;
+	private String shader;
 	
 	
 	
@@ -24,23 +24,23 @@ public class AdvancedSpriterPlayer extends Player {
 		this.drawer = drawer;
 	}
 	
-	public boolean hasShaderProgram() {
-		return Main.getAssetLoader().hasShader(shaderProgram);
+	public boolean hasShader() {
+		return Main.getAssetLoader().hasShader(shader);
 	}
 	
-	public void setShaderProgram(String shaderProgram) {
-		this.shaderProgram = shaderProgram;
+	public void setShader(String shaderProgram) {
+		this.shader = shaderProgram;
 	}
 	
-	public String getShaderProgram() {
-		return shaderProgram;
+	public String getShader() {
+		return shader;
 	}
 	
 	
 	public void draw(SpriteBatch spriteBatch) {
 		drawer.setBatch(spriteBatch);
-		if(hasShaderProgram()) {
-			spriteBatch.setShader(Main.getAssetLoader().getShader(getShaderProgram()));
+		if(hasShader()) {
+			spriteBatch.setShader(Main.getAssetLoader().getShader(getShader()));
 		}
 		else {
 			spriteBatch.setShader(null);

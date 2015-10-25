@@ -74,10 +74,10 @@ public class LaunchScreen implements Screen {
 		
 		
 		deldaryanLogo = new Image(Main.getAssetLoader().getTexture("deldaryan_games"));
-		deldaryanLogo.setScale(0.9f);
+		deldaryanLogo.setScale(2.5f);
 		deldaryanLogo.addAction(Actions.sequence(Actions.alpha(0), Actions.alpha(1f, 1f), Actions.delay(3f), Actions.alpha(0f, 1f)));
 		
-		table.add(deldaryanLogo).expand().padLeft(20).padBottom(20).center();
+		table.add(deldaryanLogo).expand().center().padRight(390).padTop(120);
 		
 		Main.getGraphicsManager().getStage().clear();
 		Main.getGraphicsManager().getStage().addActor(table);

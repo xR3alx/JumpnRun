@@ -78,9 +78,9 @@ public class AssetLoader {
 		}
 		
 		if(scmlAnimations.length != 0) {
-			for (FileHandle file : Gdx.files.internal(Main.DESKTOP_PATH_MODIFIER + "animations/spriter/").list()) {
-				if(file.extension().equals("scml")) {
-					for (String string : scmlAnimations) {
+			for (String string : scmlAnimations) {
+				for (FileHandle file : Gdx.files.internal(Main.DESKTOP_PATH_MODIFIER + "animations/spriter/" + string + "/").list()) {
+					if(file.extension().equals("scml")) {
 						if(!spriterPlayers.containsKey(string)) {
 							if(file.nameWithoutExtension().equals(string)) {
 								SCMLReader reader = new SCMLReader(file.read());

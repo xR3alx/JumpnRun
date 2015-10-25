@@ -5,25 +5,27 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.deldaryan.main.Main;
 
 public class MainScreen implements Screen {
 
 	private Table table;
+	private Image titleBackgroundImage, titleImage, buttonsBackgroungImage;
 	private TextButton playTextButton, settingsTextButton, exitTextButton;
 	
 	private int changeToMenu;
-	
 	
 	@Override
 	public void show() {
 		changeToMenu = 0;
 		
 		if(Main.getScreenManager().getLastScreen().equals("game")
+				|| Main.getScreenManager().getLastScreen().equals("launch")
 				|| Main.getScreenManager().getLastScreen().equals("")) {
 			Main.getAssetLoader().unloadAllAtlases();
 			Main.getAssetLoader().unloadAllParticleEffects();
@@ -35,7 +37,7 @@ public class MainScreen implements Screen {
 					new String[] {}, // atlases
 					new String[] {}, // animations
 					new String[] {}, // SCML animations
-					new String[] {}, // textures
+					new String[] {"title_bg", "title", "menu_bg"}, // textures
 					new String[] {}, // shaders
 					new String[] {}, // particleeffects
 					new String[] {}, // musics
@@ -58,10 +60,10 @@ public class MainScreen implements Screen {
 		if(changeToMenu != 0) {
 			if(!exitTextButton.hasActions()) {
 				if(changeToMenu == 1) {
-					Main.getScreenManager().changeScreenTo("settings");
+//					Main.getScreenManager().changeScreenTo("settings");
 				}
 				else if(changeToMenu == 2) {
-					Main.getScreenManager().changeScreenTo("game");
+//					Main.getScreenManager().changeScreenTo("game");
 				}
 				else if(changeToMenu == 3) {
 					Gdx.app.exit();
@@ -97,26 +99,27 @@ public class MainScreen implements Screen {
 	private void createUI() {
 		table = new Table();
 		table.setSize(Main.UI_WIDTH, Main.UI_HEIGHT);
-		table.setBackground(Main.getAssetLoader().getSkin().getDrawable("bg1"));
-		
-//		labelAnimation = new AdvancedAnimation(1f / 4f,
-//				Main.getAssetLoader().getAtlas("label_anim").getRegions(),
-//				PlayMode.LOOP);
-//		backgroundSprite = new AdvancedSprite(Main.getAssetLoader().getTexture("menubackground"));
-		
+
+		titleBackgroundImage = new Image(Main.getAssetLoader().getTexture("title_bg"));
+		titleImage = new Image(Main.getAssetLoader().getTexture("title"));
+		buttonsBackgroungImage = new Image(Main.getAssetLoader().getTexture("menu_bg"));
+		buttonsBackgroungImage.setScale(0.75f);
+		buttonsBackgroungImage.setPosition(Main.UI_WIDTH / 2 - buttonsBackgroungImage.getWidth() * 0.75f / 2, -10);
 		playTextButton = new TextButton(Main.getLanguageFile().get("MAIN_PLAY"), Main.getAssetLoader().getSkin(), "button16");
 		settingsTextButton = new TextButton(Main.getLanguageFile().get("MAIN_SETTINGS"), Main.getAssetLoader().getSkin(), "button16");
 		exitTextButton = new TextButton(Main.getLanguageFile().get("EXIT"), Main.getAssetLoader().getSkin(), "button16");
 		
 		Table buttons = new Table();
-		buttons.add(playTextButton).padBottom(20).padTop(100).width(140).row();
-		buttons.add(settingsTextButton).padBottom(20).padRight(30).width(140).row();
-		buttons.add(exitTextButton).width(140).padLeft(20);
+		buttons.add(titleImage).row();
+		buttons.add(playTextButton).padBottom(20).width(400).padTop(25).row();
+		buttons.add(settingsTextButton).padBottom(20).width(400).row();
+		buttons.add(exitTextButton).width(400);
 		
 		table.add(buttons).expand();
-		openAnimation();
 		
 		Main.getGraphicsManager().getStage().clear();
+		Main.getGraphicsManager().getStage().addActor(titleBackgroundImage);
+		Main.getGraphicsManager().getStage().addActor(buttonsBackgroungImage);
 		Main.getGraphicsManager().getStage().addActor(table);
 		
 		
@@ -135,15 +138,12 @@ public class MainScreen implements Screen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			if(event.getListenerActor().equals(exitTextButton)) {
-				closeAnimation();
 				changeToMenu = 3;
 			}
 			else if(event.getListenerActor().equals(settingsTextButton)) {
-				closeAnimation();
 				changeToMenu = 1;
 			}
 			else if(event.getListenerActor().equals(playTextButton)) {
-				closeAnimation();
 				changeToMenu = 2;
 			}
 		}
@@ -162,28 +162,5 @@ public class MainScreen implements Screen {
 		@Override
 		public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
 		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void openAnimation() {
-		playTextButton.setVisible(false);
-		playTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(-200f, 0f), Actions.show(), Actions.moveBy(200f, 0f, 0.15f)));
-		settingsTextButton.setVisible(false);
-		settingsTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(200f, 0f), Actions.delay(0.15f), Actions.show(), Actions.moveBy(-200f, 0f, 0.15f)));
-		exitTextButton.setVisible(false);
-		exitTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(-200f, 0f), Actions.delay(0.3f), Actions.show(), Actions.moveBy(200f, 0f, 0.15f)));
-	}
-	
-	public void closeAnimation() {
-		playTextButton.addAction(Actions.sequence(Actions.moveBy(200f, 0f, 0.15f), Actions.hide()));
-		settingsTextButton.addAction(Actions.sequence(Actions.delay(0.15f), Actions.moveBy(-200f, 0f, 0.15f), Actions.hide()));
-		exitTextButton.addAction(Actions.sequence(Actions.delay(0.3f), Actions.moveBy(200f, 0f, 0.15f), Actions.hide()));
 	}
 }

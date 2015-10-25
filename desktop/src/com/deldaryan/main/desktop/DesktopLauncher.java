@@ -11,7 +11,7 @@ import com.deldaryan.utils.Utils;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-config.title = "Twinstick shooter";
+		config.title = "Jump'n'Run";
 		
 		File file = new File("config.yml");
 		if(file.exists()) {
