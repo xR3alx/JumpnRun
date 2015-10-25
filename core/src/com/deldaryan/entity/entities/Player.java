@@ -20,24 +20,26 @@ public class Player extends Entity {
 		
 		EntityComponent entityComp = new EntityComponent(EntityType.PLAYER, 20, 20, new Vector2(220f, 0f));
 		entityComp.setIdentifier("player");
+		entityComp.setJumpLength(20f);
+		entityComp.setJumpStrength(150f);
 		add(entityComp);
 		
 		VelocityComponent veloComp = new VelocityComponent(new Vector2(0, 0));
 		add(veloComp);
 		
 		BodyComponent bodyComp = new BodyComponent();
-		bodyComp.createBodyCircle("body", getId(), position, 0.45f, true, 0, 1f, 0f, 0f, false);
+		bodyComp.createBodyCircle("body", getId(), position, 0.6f, true, 0, 1f, 0f, 0f, false);
 		bodyComp.changeBody("body");
+		bodyComp.getCurrentBody().setGravityScale(3f);
 		add(bodyComp);
 		Main.getGraphicsManager().getGameCamera().setBodyToFollow(bodyComp.getCurrentBody());
 	
-		SkeletonAnimationComponent skeletonAnimation = new SkeletonAnimationComponent("player");
+		final SkeletonAnimationComponent skeletonAnimation = new SkeletonAnimationComponent("player");
 		skeletonAnimation.getPlayer().setAnimation(AnimationType.IDLE);
-		skeletonAnimation.getPlayer().setScale(0.01f);
+		skeletonAnimation.getPlayer().setScale(0.0125f);
 		skeletonAnimation.getPlayer().setOffsetY(0.75f);
 		add(skeletonAnimation);
 		Main.getGraphicsManager().getRenderManager().getLayer("entities").addRenderObject(skeletonAnimation.getPlayer());
-		
 		
 		LightComponent lightComp = new LightComponent(5f, 60, new Color(1f, 0.9f, 0.2f, 0.4f));
 		lightComp.getLight().setIgnoreAttachedBody(true);

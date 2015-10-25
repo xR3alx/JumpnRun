@@ -25,9 +25,9 @@ public class WorldManager {
 	
 	private ArrayList<Body> bodiesToRemove;
 	
-	public static final int PIXELS_PER_METER = 64;
+	public static final int PIXELS_PER_METER = 32;
 	
-	private static final Vector2 GRAVITY = new Vector2(0, 0);
+	private static final Vector2 GRAVITY = new Vector2(0, -9.81f);
 	private static final boolean DO_SLEEP = true;
 	private static final int POSITION_ITERATION = 7, VELOCITY_ITERATION = 9;
 	private static final float TIMESTEP = 1 / 60f;
@@ -43,7 +43,6 @@ public class WorldManager {
 	
 	public void update() {
 		world.step(TIMESTEP, VELOCITY_ITERATION, POSITION_ITERATION);
-		rayHandler.update();
 		
 		for (Body body : bodiesToRemove) {
 			world.destroyBody(body);
@@ -53,8 +52,6 @@ public class WorldManager {
 	
 	public void render() {
 		rayHandler.setCombinedMatrix(Main.getGraphicsManager().getGameCamera());
-		rayHandler.render();
-		
 		if(Main.DEBUG) {
 			debugRenderer.render(world, Main.getGraphicsManager().getGameCamera().combined);
 		}

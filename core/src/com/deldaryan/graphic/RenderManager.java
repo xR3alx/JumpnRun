@@ -1,6 +1,7 @@
 package com.deldaryan.graphic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,7 +25,10 @@ public class RenderManager {
 
 	
 	public void render() {
-		for (String string : layerOrder) {
+		ArrayList<String> layerOrderReverse = new ArrayList<String>();
+		layerOrderReverse.addAll(layerOrder);
+		Collections.reverse(layerOrderReverse);
+		for (String string : layerOrderReverse) {
 			if(hasLayer(string)) {
 				getLayer(string).render(spriteBatch);
 			}

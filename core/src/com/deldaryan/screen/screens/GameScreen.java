@@ -67,9 +67,9 @@ public class GameScreen implements Screen, ContactListener {
 				new String[] {}, // particleeffects
 				new String[] {}, // musics
 				new String[] {}, // sounds
-				new String[] {"map_0"} // maps
+				new String[] {"grasland"} // maps
 		);
-		Main.getMapManager().load("map_0");
+		Main.getMapManager().load("grasland");
 
 		Main.getGraphicsManager().getGameCamera().zoom = 1f;
 		Main.getWorldManager().getWorld().setContactListener(this);
@@ -86,6 +86,7 @@ public class GameScreen implements Screen, ContactListener {
 			updateInput();
 			Main.getWorldManager().update();
 		}
+		Main.getMapManager().update();
 		Main.getEntityManager().render();
 		Main.getWorldManager().render();
 		
@@ -196,15 +197,21 @@ public class GameScreen implements Screen, ContactListener {
 						player.getComponent(VelocityComponent.class).getVelocity().x,
 						player.getComponent(EntityComponent.class).getSpeed().y * Gdx.graphics.getDeltaTime());
 			}
-			else if(Gdx.input.isKeyPressed(Integer.parseInt(Main.getConfigFile().get("key_movedown")))) {
-				player.getComponent(VelocityComponent.class).setVelocity(
-						player.getComponent(VelocityComponent.class).getVelocity().x,
-						-player.getComponent(EntityComponent.class).getSpeed().y * Gdx.graphics.getDeltaTime());
-			}
 			else {
 				player.getComponent(VelocityComponent.class).setVelocity(
 						player.getComponent(VelocityComponent.class).getVelocity().x,
 						0);
+			}
+			
+			
+			if(Gdx.input.isKeyPressed(Integer.parseInt(Main.getConfigFile().get("key_jump")))) {
+				if(player.getComponent(EntityComponent.class).isCanJump()) {
+					player.getComponent(EntityComponent.class).setJumping(true);
+				}
+			}
+			else {
+				player.getComponent(EntityComponent.class).setJumping(false);
+				player.getComponent(EntityComponent.class).setJumpTime(0);
 			}
 			
 			

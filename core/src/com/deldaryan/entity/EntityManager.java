@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.deldaryan.entity.component.AnimationComponent;
 import com.deldaryan.entity.component.BodyComponent;
 import com.deldaryan.entity.component.EntityComponent;
-import com.deldaryan.entity.component.LightComponent;
 import com.deldaryan.entity.component.ProjectileComponent;
 import com.deldaryan.entity.component.SkeletonAnimationComponent;
 import com.deldaryan.entity.component.SpriteComponent;
@@ -18,7 +17,6 @@ import com.deldaryan.entity.component.VelocityComponent;
 import com.deldaryan.entity.component.WeaponComponent;
 import com.deldaryan.entity.system.AnimationSystem;
 import com.deldaryan.entity.system.EntitySystem;
-import com.deldaryan.entity.system.RenderSystem;
 import com.deldaryan.entity.system.VelocitySystem;
 import com.deldaryan.main.Main;
 
@@ -32,7 +30,6 @@ public class EntityManager {
 		
 		engine.addSystem(new VelocitySystem(Family.all(EntityComponent.class, BodyComponent.class, VelocityComponent.class).get()));
 		engine.addSystem(new AnimationSystem(Family.all(EntityComponent.class, BodyComponent.class, VelocityComponent.class).one(AnimationComponent.class, SkeletonAnimationComponent.class).get()));
-		engine.addSystem(new RenderSystem(Family.one(AnimationComponent.class, SpriteComponent.class, LightComponent.class, BodyComponent.class).get()));
 		engine.addSystem(new EntitySystem(Family.one(AnimationComponent.class, BodyComponent.class, EntityComponent.class, ProjectileComponent.class,
 						SpriteComponent.class, VelocityComponent.class, WeaponComponent.class).get()));
 //		engine.addSystem(new AISystem(Family.one(AnimationComponent.class, SpriteComponent.class, WeaponComponent.class)
@@ -98,10 +95,5 @@ public class EntityManager {
 	
 	public int getEntityCount() {
 		return engine.getEntities().size();
-	}
-
-	
-	public void dispose() {
-		((RenderSystem) engine.getSystem(RenderSystem.class)).dispose();
 	}
 }

@@ -3,6 +3,9 @@ package com.deldaryan.entity.system;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.deldaryan.advanced.AdvancedAnimation;
 import com.deldaryan.entity.AnimationType;
 import com.deldaryan.entity.component.AnimationComponent;
@@ -10,6 +13,8 @@ import com.deldaryan.entity.component.BodyComponent;
 import com.deldaryan.entity.component.EntityComponent;
 import com.deldaryan.entity.component.SkeletonAnimationComponent;
 import com.deldaryan.entity.component.VelocityComponent;
+import com.deldaryan.main.Main;
+import com.deldaryan.utils.Utils;
 
 public class AnimationSystem extends IteratingSystem {
 
@@ -31,7 +36,8 @@ public class AnimationSystem extends IteratingSystem {
 				if(animation.isSomethingRendering()) {
 					if(entityComp.getHealth() > 0) {
 						if(veloComp.getVelocity().x != 0
-								|| veloComp.getVelocity().y != 0) {
+								&& bodyComp.getCurrentBody().getLinearVelocity().y < 0.5
+								&& bodyComp.getCurrentBody().getLinearVelocity().y > -0.5) {
 							animation.hideAll();
 							animation.getAnimation(AnimationType.WALK).setRender(true);
 						}
@@ -46,27 +52,27 @@ public class AnimationSystem extends IteratingSystem {
 					}
 					
 					for (AdvancedAnimation anim : animation.getRenderingAnimations()) {
-						anim.setPosition(bodyComp.getCurrentBody().getPosition());
+						anim.setPosition(bodyComp.getCurrentBody().getPosition().add(anim.getOffsetX(), anim.getOffsetY()));
 					}
 				}
 			}
 			else if(skeletonAnimation != null) {
 				if(entityComp.getHealth() > 0) {
 					if(veloComp.getVelocity().x != 0
-							|| veloComp.getVelocity().y != 0) {
-						
+							&& bodyComp.getCurrentBody().getLinearVelocity().y < 0.5
+							&& bodyComp.getCurrentBody().getLinearVelocity().y > -0.5) {
+						skeletonAnimation.getPlayer().setAnimation(AnimationType.WALK);
+					}
+					else {
 						if(bodyComp.getCurrentBody().getLinearVelocity().y > 0) {
 							skeletonAnimation.getPlayer().setAnimation(AnimationType.JUMPING);
 						}
-						else if(bodyComp.getCurrentBody().getLinearVelocity().y < 0) {
+						else if(entityComp.isFallen() && !entityComp.isOnGround()) {
 							skeletonAnimation.getPlayer().setAnimation(AnimationType.FALLING);
 						}
-						else {
-							skeletonAnimation.getPlayer().setAnimation(AnimationType.WALK);
+						else if(entityComp.isOnGround()){
+							skeletonAnimation.getPlayer().setAnimation(AnimationType.IDLE);
 						}
-					}
-					else {
-						skeletonAnimation.getPlayer().setAnimation(AnimationType.IDLE);
 					}
 				}
 				else {
@@ -84,7 +90,8 @@ public class AnimationSystem extends IteratingSystem {
 						skeletonAnimation.getPlayer().flip(true, false);
 					}
 				}
-				skeletonAnimation.getPlayer().setPosition(bodyComp.getCurrentBody().getPosition().x, bodyComp.getCurrentBody().getPosition().y);
+				skeletonAnimation.getPlayer().setPosition(bodyComp.getCurrentBody().getPosition().x + skeletonAnimation.getPlayer().getOffsetX(), bodyComp.getCurrentBody().getPosition().y + skeletonAnimation.getPlayer().getOffsetY());
+//				skeletonAnimation.getPlayer().setBone("bone_001", (float) Utils.lookAt(bodyComp.getCurrentBody().getPosition(), new Vector2(Gdx.input.getX(), Gdx.input.getY()), Main.getGraphicsManager().getGameCamera()) * MathUtils.radiansToDegrees);
 			}
 		}
 	}

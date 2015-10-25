@@ -1,16 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" name="Grasweg" tilewidth="32" tileheight="32" tilecount="30">
-  <image source="../Tileset - Gras/Tileset-Gras-160-160.png" width="192" height="160"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="19">
+ <properties>
+  <property name="rgba" value="0.4,0.4,0.4,1"/>
+ </properties>
+ <tileset firstgid="1" name="Grasweg" tilewidth="32" tileheight="32">
+  <image source="tilesets/tileset.png" width="192" height="160"/>
  </tileset>
- <layer name="Kachelebene 2" width="100" height="100">
-  <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
-  </data>
- </layer>
- <layer name="Kachelebene 1" width="100" height="100">
+ <layer name="tiles" width="100" height="100">
+  <properties>
+   <property name="layer" value="midground"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzt2sluhTAMheF0vJ3b23l+/8esK8Emog2JIDb2/0nWWSHBJscCUgIAAAAAAAAAAPDlWOZoyBOZU93bCe9C5nzIS5kr3dsJ707mdsi9zL3u7YT3LPM05IvMq+7thPcp8zHkl8y37u0Apoy7VZ7sWjrG3SpPdi0d426VJ7uWjnG3ypNdS8e4W+U5tWsdyBym+s7pfV0UO5mzVN85va+L4lrmJtV3Tu/roniQeUz1ndP7uijeZN5TXef0vC7vm+j9oi3vm+j9oi3vm+j9oi3vm+j9oi3vm7Ff6BVb6BVb6BVb6BVb/uqVX3SLLXSLLXSLLda6Zeq7wpz0cs7+1y0apr4rzMkI56xG1099V5iTEc5Zja6f+q4wJ7XP2R40un7qu8Kc1D5ne7DW9aX/CZZIy3uBta4v/U+wRG51L9Do+tL/BEvkVvcCja4v/U+wRGqfya00ur70P8ESqX0mt7LW9WvY0v5Q6vrWZ7HE0/7Q+iyWeNofWp/FEk/7Q+uzWOJpf2h9FsCiLe12EXja7TzwtNt54Gm388DTbgcAPay5b5P1uea+Tdbnmvs2WZ9r7ttkfa65b5O83wUAAAAAAAAAAAAAAAAAAACAuX4A8hBWHg==
   </data>
  </layer>
+ <objectgroup color="#ff0000" name="entities">
+  <object id="1" type="0" x="416" y="1984" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ff00ff" name="collision">
+  <object id="2" type="object" x="0" y="2144" width="3200" height="32"/>
+  <object id="4" type="object" x="2112" y="1888">
+   <polyline points="0,0 864,0 832,96 32,96 0,0"/>
+  </object>
+  <object id="5" type="object" x="2752" y="1696">
+   <polyline points="0,0 32,96 448,96 448,0 0,0"/>
+  </object>
+  <object id="6" type="object" x="2688" y="1568">
+   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
+  </object>
+  <object id="7" type="object" x="2464" y="1408">
+   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
+  </object>
+  <object id="8" type="object" x="1984" y="1696">
+   <polyline points="0,0 -32,96 -832,96 -864,0 0,0"/>
+  </object>
+  <object id="9" type="object" x="1088" y="1536">
+   <polyline points="0,0 -32,96 -832,96 -864,0 0,0"/>
+  </object>
+  <object id="10" type="object" x="512" y="1376">
+   <polyline points="0,0 -32,96 -512,96 -512,0 0,0"/>
+  </object>
+  <object id="11" type="object" x="2240" y="1248">
+   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
+  </object>
+  <object id="12" type="object" x="2016" y="1120">
+   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
+  </object>
+  <object id="13" type="object" x="1824" y="992">
+   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
+  </object>
+  <object id="14" type="object" x="1568" y="864">
+   <polyline points="0,0 -32,96 -288,96 -320,0 0,0"/>
+  </object>
+  <object id="15" type="object" x="1120" y="864">
+   <polyline points="0,0 -32,96 -288,96 -320,0 0,0"/>
+  </object>
+  <object id="16" type="object" x="672" y="864">
+   <polyline points="0,0 -32,96 -288,96 -320,0 0,0"/>
+  </object>
+  <object id="17" type="object" x="256" y="736">
+   <polyline points="0,0 -32,96 -256,96 -256,0 0,0"/>
+  </object>
+  <object id="18" type="object" x="160" y="544">
+   <polyline points="0,0 -32,96 -160,96 -160,0 0,0"/>
+  </object>
+ </objectgroup>
 </map>

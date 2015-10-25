@@ -23,7 +23,7 @@ public class VelocitySystem extends IteratingSystem {
 		
 
 		if(bodyComp.hasBodies()) {
-			////////////////////////////////////////////ON GROUND / FALLEN ////////////////////////////////////////
+			//////////////////////////////////////////// ON GROUND / FALLEN ////////////////////////////////////////
 			if(bodyComp.getCurrentBody().getLinearVelocity().y < -0.5f) {
 				entityComp.setFallen(true);
 			}
@@ -75,7 +75,7 @@ public class VelocitySystem extends IteratingSystem {
 					|| entityComp.getEntityType() == EntityType.ENEMY_BOSS
 					*/
 					) {
-				Vector2 velocity = new Vector2(veloComp.getVelocity().x, veloComp.getVelocity().y) ;
+				Vector2 velocity = new Vector2(veloComp.getVelocity().x, veloComp.getVelocity().y == 0 ? bodyComp.getCurrentBody().getLinearVelocity().y : veloComp.getVelocity().y) ;
 	
 				
 				float accStrength = 0.1f;

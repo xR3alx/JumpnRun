@@ -119,7 +119,6 @@ public class Main extends Game {
 		graphicsManager.dispose();
 		assetLoader.dispose();
 		worldManager.dispose();
-		entityManager.dispose();
 		mapManager.dispose();
 		
 		if(debugDisplay != null) {
