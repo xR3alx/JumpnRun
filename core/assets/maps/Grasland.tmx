@@ -1,68 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="19">
- <properties>
-  <property name="rgba" value="0.4,0.4,0.4,1"/>
- </properties>
- <tileset firstgid="1" name="Grasweg" tilewidth="32" tileheight="32">
-  <image source="tilesets/tileset.png" width="192" height="160"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="8">
+ <tileset firstgid="1" name="Grasland by Epyx" tilewidth="32" tileheight="32" tilecount="450">
+  <image source="../Tileset - Gras/Tileset-Grasland.png" width="800" height="600"/>
  </tileset>
- <layer name="tiles" width="100" height="100">
+ <layer name="Background" width="100" height="100">
   <properties>
-   <property name="layer" value="midground"/>
+   <property name="Layer" value="background"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2sluhTAMheF0vJ3b23l+/8esK8Emog2JIDb2/0nWWSHBJscCUgIAAAAAAAAAAPDlWOZoyBOZU93bCe9C5nzIS5kr3dsJ707mdsi9zL3u7YT3LPM05IvMq+7thPcp8zHkl8y37u0Apoy7VZ7sWjrG3SpPdi0d426VJ7uWjnG3ypNdS8e4W+U5tWsdyBym+s7pfV0UO5mzVN85va+L4lrmJtV3Tu/roniQeUz1ndP7uijeZN5TXef0vC7vm+j9oi3vm+j9oi3vm+j9oi3vm+j9oi3vm7Ff6BVb6BVb6BVb6BVb/uqVX3SLLXSLLXSLLda6Zeq7wpz0cs7+1y0apr4rzMkI56xG1099V5iTEc5Zja6f+q4wJ7XP2R40un7qu8Kc1D5ne7DW9aX/CZZIy3uBta4v/U+wRG51L9Do+tL/BEvkVvcCja4v/U+wRGqfya00ur70P8ESqX0mt7LW9WvY0v5Q6vrWZ7HE0/7Q+iyWeNofWp/FEk/7Q+uzWOJpf2h9FsCiLe12EXja7TzwtNt54Gm388DTbgcAPay5b5P1uea+Tdbnmvs2WZ9r7ttkfa65b5O83wUAAAAAAAAAAAAAAAAAAACAuX4A8hBWHg==
+   eJzt2Xlu1DAUx3GzHoL1EEDpIdiqsl0AKBUt5QKl/AFXKEWsN2C5YN9T5qkey3bSsSfjlO9HerKm6iR245+TuM4BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADfOamLUpdX3ZH/0KbU4+BnV6SuS90cvzsLi41jit5I7QQ/uyW1JrU++6x5OS91wXW5ueTay05sHFMUm1f3pB5Kbcw+a16uSl1zXW5uuLay80TqqdQzqecr7kup2Lx6IbUltT37rHm5LXXHdbm5606y04JdqbdSe1LvVtyXUmdl3Z3SOHT9T633mo+9EfuyLFO6f+j6n1rvpzSvcmqNo+Q4ue/6mdD1P7XeT2le5dQaR8lxct/1M6HPSxuJ3xszH8s8V+v58DOhz0vbid8bMx/LPFfr+chlwncW8mHvHy3nI5cJ31j5sL/ZMs5l7x8t5KP0nXSzwjGGsL9Z6Ry2vZtwz6bGOEpzViP/U7t/2N5NuGdT49g2Zxa5rrXyP/b9o3QO295NuGez6uerWvkfOx+pPaZwDzlsbX3S55T7Uo/c/PNK689XQ6Xmw6HUkdTnTPul0rlUuIcctrY+6XPKS6nXbv55Zci83pd6L3Ug9WGBPvbR75bsPeXWvN9Sf6X+ZNp/lc6lwj3ksO3bU87NTbsOft9Tc2nROV7r/pFa82rno299tXXogev+9xK24frk63suio0lNZdauH+EGdP5pH2umQ87V2r+2Dr0ynX/ewnbcH3y5d4/9jNjiK1ZJe8QNe4fH6U+eZ/tWhy5/nxoGxvT4cBzqdPeg1Jixx6S8fB+EjtOSR+G+ir1Teq71A+pn7O+6Rhs/vTlw67ZgZu/Lnrv6buO1p42Y0PG8cvlc5FqY8cp6QMAAAAAAAAAAAAAAEDLjgEsTsNP
   </data>
  </layer>
- <objectgroup color="#ff0000" name="entities">
-  <object id="1" type="0" x="416" y="1984" width="32" height="32"/>
+ <layer name="Midground" width="100" height="100">
+  <properties>
+   <property name="Layer" value="midground"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2VlqxDAMgOHpeoiuh+h6iK60V+g2tPd/rfwgCII4I2c8XvJ/IMTQFxHkSHVWKwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC92pPYlziQOJQ4kjguWtGynUicSpxJnEtcSFwWrShNL311JXEtcSNxK3EncV+0ojS99NWDxKPEk8SzxIvEa9GK0vTSVx8SnxJfEt8SPxLrohWl6aWvetFDX9kZ6M2tzswpc59LLMfYGejNrc7MKXOfSyzH2Bnozd6ZWdtOqvXYOuY+l1iOsTPQm70zs7adVOuxdcx9LrEcY2egN3tnZg07aTgTeha0HlvH3OcSy0Ete18NO2k4E3oWtJ5t1/Em8T7yt/CeXq/q2JNy76TD3tffdj6EM6FnQevZdh2/En8jf1vSnjTsff1t50M4EyXfF949yfZYS4a9r7/tfAhnouT/id49yfZYS2zv55oPc3j3JO2xFs+J7f1c82GXtMdaPic90R4bnpPYXU7p/7GXYnhOYnc5vexmtRuek9hdTqvffVo1dZcztrt476x5721m6i5nbHfx3lnz3svLe2e9lPdejm9cm2TvnbW+90rVu6uc4xsXOT3n+MZFTs85vnGR03OOb1zk9AwAAAAAAAAAAADk9A/vu9fO
+  </data>
+ </layer>
+ <layer name="Foreground" width="100" height="100">
+  <properties>
+   <property name="Layer" value="foreground"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="collision">
+  <properties>
+   <property name="Layer" value="collision"/>
+  </properties>
  </objectgroup>
- <objectgroup color="#ff00ff" name="collision">
-  <object id="2" type="object" x="0" y="2144" width="3200" height="32"/>
-  <object id="4" type="object" x="2112" y="1888">
-   <polyline points="0,0 864,0 832,96 32,96 0,0"/>
-  </object>
-  <object id="5" type="object" x="2752" y="1696">
-   <polyline points="0,0 32,96 448,96 448,0 0,0"/>
-  </object>
-  <object id="6" type="object" x="2688" y="1568">
-   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
-  </object>
-  <object id="7" type="object" x="2464" y="1408">
-   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
-  </object>
-  <object id="8" type="object" x="1984" y="1696">
-   <polyline points="0,0 -32,96 -832,96 -864,0 0,0"/>
-  </object>
-  <object id="9" type="object" x="1088" y="1536">
-   <polyline points="0,0 -32,96 -832,96 -864,0 0,0"/>
-  </object>
-  <object id="10" type="object" x="512" y="1376">
-   <polyline points="0,0 -32,96 -512,96 -512,0 0,0"/>
-  </object>
-  <object id="11" type="object" x="2240" y="1248">
-   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
-  </object>
-  <object id="12" type="object" x="2016" y="1120">
-   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
-  </object>
-  <object id="13" type="object" x="1824" y="992">
-   <polyline points="0,0 -32,96 -160,96 -192,0 0,0"/>
-  </object>
-  <object id="14" type="object" x="1568" y="864">
-   <polyline points="0,0 -32,96 -288,96 -320,0 0,0"/>
-  </object>
-  <object id="15" type="object" x="1120" y="864">
-   <polyline points="0,0 -32,96 -288,96 -320,0 0,0"/>
-  </object>
-  <object id="16" type="object" x="672" y="864">
-   <polyline points="0,0 -32,96 -288,96 -320,0 0,0"/>
-  </object>
-  <object id="17" type="object" x="256" y="736">
-   <polyline points="0,0 -32,96 -256,96 -256,0 0,0"/>
-  </object>
-  <object id="18" type="object" x="160" y="544">
-   <polyline points="0,0 -32,96 -160,96 -160,0 0,0"/>
-  </object>
+ <objectgroup name="Entities">
+  <properties>
+   <property name="Layer" value="entities"/>
+  </properties>
  </objectgroup>
 </map>
