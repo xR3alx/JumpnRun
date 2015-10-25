@@ -13,7 +13,6 @@ import com.deldaryan.entity.component.LightComponent;
 import com.deldaryan.entity.component.WeaponComponent;
 import com.deldaryan.main.Main;
 import com.deldaryan.screen.screens.GameScreen;
-import com.deldaryan.utils.Utils;
 
 public class EntitySystem extends IteratingSystem {
 
@@ -48,8 +47,6 @@ public class EntitySystem extends IteratingSystem {
 						}
 					}
 				}
-			
-				bodyComp.getCurrentBody().setTransform(bodyComp.getCurrentBody().getPosition(), (float) Utils.lookAtMouse(bodyComp.getCurrentBody(), Main.getGraphicsManager().getGameCamera()));
 			}
 			
 			

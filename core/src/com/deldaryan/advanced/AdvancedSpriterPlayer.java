@@ -39,13 +39,6 @@ public class AdvancedSpriterPlayer extends Player {
 	
 	public void draw(SpriteBatch spriteBatch) {
 		drawer.setBatch(spriteBatch);
-		if(hasShader()) {
-			spriteBatch.setShader(Main.getAssetLoader().getShader(getShader()));
-		}
-		else {
-			spriteBatch.setShader(null);
-		}
-		
 		drawer.draw(this);
 	}
 	

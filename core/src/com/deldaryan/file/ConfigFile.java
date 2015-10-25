@@ -52,12 +52,12 @@ public class ConfigFile {
 		if(!has("key_moveup")) {
 			set("key_moveup", "" + Keys.W);
 		}
-		if(!has("key_movedown")) {
-			set("key_movedown", "" + Keys.S);
+		if(!has("key_jump")) {
+			set("key_jump", "" + Keys.SPACE);
 		}
 		
 		if(!has("window_width")) {
-			set("window_width", "" + 1080);
+			set("window_width", "" + 1280);
 		}
 		if(!has("window_height")) {
 			set("window_height", "" + 720);

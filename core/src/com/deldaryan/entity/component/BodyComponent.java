@@ -23,18 +23,33 @@ public class BodyComponent implements Component {
 		bodies = new HashMap<String, Body>();
 	}
 	
-	public void createBody(String key, long entityID,
+	public void createBodyCircle(String key, long entityID,
 			Vector2 position, float radius, boolean allowSleep, float angle,
 			float density, float friction, float restitution, boolean sensor, short category, short mask) {
 		bodies.put(key, BodyCreator.createCircle(position, radius, BodyType.DynamicBody, allowSleep, angle, false, density, friction, restitution, sensor, category, mask, new EntityUserData(entityID)));
 	}
 	
 	
-	public void createBody(String key, long entityID,
+	public void createBodyCircle(String key, long entityID,
 			Vector2 position, float radius, boolean allowSleep, float angle,
 			float density, float friction, float restitution, boolean sensor) {
 		bodies.put(key, BodyCreator.createCircle(position, radius, BodyType.DynamicBody, allowSleep, angle, false, density, friction, restitution, sensor, new EntityUserData(entityID)));
 	}
+	
+	public void createBodyBox(String key, long entityID,
+			Vector2 position, float width, float height, boolean allowSleep, float angle,
+			float density, float friction, float restitution, boolean sensor, short category, short mask) {
+		bodies.put(key, BodyCreator.createPolygon(position, width, height, BodyType.DynamicBody, allowSleep, angle, false, density, friction, restitution, sensor, category, mask, new EntityUserData(entityID)));
+	}
+	
+	
+	public void createBodyBox(String key, long entityID,
+			Vector2 position, float width, float height, boolean allowSleep, float angle,
+			float density, float friction, float restitution, boolean sensor) {
+		bodies.put(key, BodyCreator.createPolygon(position, width, height, BodyType.DynamicBody, allowSleep, angle, false, density, friction, restitution, sensor, new EntityUserData(entityID)));
+	}
+	
+	
 	
 	
 	public boolean hasBodies() {

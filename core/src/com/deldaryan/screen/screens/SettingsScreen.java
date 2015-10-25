@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -18,6 +19,7 @@ import com.deldaryan.main.Main;
 public class SettingsScreen implements Screen, InputProcessor {
 
 	private Table table;
+	private Image titleBackgroundImage, buttonsBackgroungImage;
 	private Label controlsLabel;
 	private TextButton languageTextButton, backTextButton, controlLeftTextButton, controlRightTextButton, controlUpTextButton,
 						controlDownTextButton, mastervolumeTextButton;
@@ -69,10 +71,12 @@ public class SettingsScreen implements Screen, InputProcessor {
 	private void createUI() {
 		table = new Table();
 		table.setSize(Main.UI_WIDTH, Main.UI_HEIGHT);
-		table.setBackground(Main.getAssetLoader().getSkin().getDrawable("bg1"));
 		
-//		backgroundSprite = new AdvancedSprite(Main.getAssetLoader().getTexture("menubackground"));
 		
+		titleBackgroundImage = new Image(Main.getAssetLoader().getTexture("title_bg"));
+		buttonsBackgroungImage = new Image(Main.getAssetLoader().getTexture("menu_bg"));
+		buttonsBackgroungImage.setScale(0.75f, 1.4f);
+		buttonsBackgroungImage.setPosition(Main.UI_WIDTH / 2 - buttonsBackgroungImage.getWidth() * 0.75f / 2, -20);
 		languageTextButton = new TextButton(Main.getLanguageFile().get("SETTINGS_LANG") + Main.getLanguageFile().getLangPrefix(), Main.getAssetLoader().getSkin(), "button14");
 		mastervolumeTextButton = new TextButton(Main.getLanguageFile().get("SETTINGS_MASTERVOLUME") + Main.getConfigFile().get("mastervolume"), Main.getAssetLoader().getSkin(), "button14");
 		controlsLabel = new Label(Main.getLanguageFile().get("SETTINGS_CONTROL"), Main.getAssetLoader().getSkin(), "trans14");
@@ -85,6 +89,8 @@ public class SettingsScreen implements Screen, InputProcessor {
 		buildTable();
 		
 		Main.getGraphicsManager().getStage().clear();
+		Main.getGraphicsManager().getStage().addActor(titleBackgroundImage);
+		Main.getGraphicsManager().getStage().addActor(buttonsBackgroungImage);
 		Main.getGraphicsManager().getStage().addActor(table);
 		
 
@@ -112,7 +118,6 @@ public class SettingsScreen implements Screen, InputProcessor {
 		public void clicked(InputEvent event, float x, float y) {
 			if(!listenToNextKey) {
 				if(event.getListenerActor().equals(backTextButton)) {
-					closeAnimation();
 					changeToMain = true;
 				}
 				else if(event.getListenerActor().equals(languageTextButton)) {
@@ -292,47 +297,16 @@ public class SettingsScreen implements Screen, InputProcessor {
 	
 	private void buildTable() {
 		Table buttons = new Table();
-		buttons.add(languageTextButton).padBottom(5).padLeft(25).width(110).row();
-		buttons.add(mastervolumeTextButton).padBottom(15).padRight(25).width(110).row();
-		buttons.add(controlsLabel).padBottom(5).padLeft(15).width(110).row();
-		buttons.add(controlLeftTextButton).padBottom(5).padRight(25).width(110).row();
-		buttons.add(controlRightTextButton).padBottom(5).padLeft(25).width(110).row();
-		buttons.add(controlUpTextButton).padBottom(5).padRight(25).width(110).row();
-		buttons.add(controlDownTextButton).padBottom(15).padLeft(25).width(110).row();
-		buttons.add(backTextButton).width(110);
+		buttons.add(languageTextButton).padBottom(5).width(400).row();
+		buttons.add(mastervolumeTextButton).padBottom(15).width(400).row();
+		buttons.add(controlsLabel).padBottom(5).width(110).row();
+		buttons.add(controlLeftTextButton).padBottom(5).width(400).row();
+		buttons.add(controlRightTextButton).padBottom(5).width(400).row();
+		buttons.add(controlUpTextButton).padBottom(5).width(400).row();
+		buttons.add(controlDownTextButton).padBottom(15).width(400).row();
+		buttons.add(backTextButton).width(400);
 		
 		table.clear();
 		table.add(buttons).expand();
-		openAnimation();
-	}
-	
-	public void openAnimation() {
-		languageTextButton.setVisible(false);
-		languageTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(-200f, 0f), Actions.show(), Actions.moveBy(200f, 0f, 0.15f)));
-		mastervolumeTextButton.setVisible(false);
-		mastervolumeTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(200f, 0f), Actions.delay(0.15f), Actions.show(), Actions.moveBy(-200f, 0f, 0.15f)));
-		controlsLabel.setVisible(false);
-		controlsLabel.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(-200f, 0f), Actions.delay(0.3f), Actions.show(), Actions.moveBy(200f, 0f, 0.15f)));
-		controlLeftTextButton.setVisible(false);
-		controlLeftTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(200f, 0f), Actions.delay(0.45f), Actions.show(), Actions.moveBy(-200f, 0f, 0.15f)));
-		controlRightTextButton.setVisible(false);
-		controlRightTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(-200f, 0f), Actions.delay(0.6f), Actions.show(), Actions.moveBy(200f, 0f, 0.15f)));
-		controlUpTextButton.setVisible(false);
-		controlUpTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(200f, 0f), Actions.delay(0.75f), Actions.show(), Actions.moveBy(-200f, 0f, 0.15f)));
-		controlDownTextButton.setVisible(false);
-		controlDownTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(-200f, 0f), Actions.delay(0.9f), Actions.show(), Actions.moveBy(200f, 0f, 0.15f)));
-		backTextButton.setVisible(false);
-		backTextButton.addAction(Actions.sequence(Actions.hide(), Actions.moveBy(200f, 0f), Actions.delay(1.05f), Actions.show(), Actions.moveBy(-200f, 0f, 0.15f)));
-	}
-	
-	public void closeAnimation() {
-		languageTextButton.addAction(Actions.sequence(Actions.moveBy(200f, 0f, 0.15f), Actions.hide()));
-		mastervolumeTextButton.addAction(Actions.sequence(Actions.delay(0.15f), Actions.moveBy(-200f, 0f, 0.15f), Actions.hide()));
-		controlsLabel.addAction(Actions.sequence(Actions.delay(0.3f), Actions.moveBy(200f, 0f, 0.15f), Actions.hide()));
-		controlLeftTextButton.addAction(Actions.sequence(Actions.delay(0.45f), Actions.moveBy(-200f, 0f, 0.15f), Actions.hide()));
-		controlRightTextButton.addAction(Actions.sequence(Actions.delay(0.6f), Actions.moveBy(200f, 0f, 0.15f), Actions.hide()));
-		controlUpTextButton.addAction(Actions.sequence(Actions.delay(0.75f), Actions.moveBy(-200f, 0f, 0.15f), Actions.hide()));
-		controlDownTextButton.addAction(Actions.sequence(Actions.delay(0.9f), Actions.moveBy(200f, 0f, 0.15f), Actions.hide()));
-		backTextButton.addAction(Actions.sequence(Actions.delay(1.05f), Actions.moveBy(-200f, 0f, 0.15f), Actions.hide()));
 	}
 }

@@ -20,11 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Align;
-import com.deldaryan.entity.component.BodyComponent;
 import com.deldaryan.entity.component.EntityComponent;
 import com.deldaryan.entity.component.VelocityComponent;
-import com.deldaryan.entity.component.WeaponComponent;
 import com.deldaryan.entity.entities.Player;
 import com.deldaryan.main.Main;
 import com.deldaryan.utils.Utils;
@@ -39,8 +36,8 @@ public class GameScreen implements Screen, ContactListener {
 	
 	private GameUI gameUI;
 	
-	private int lastHealth;
-	private boolean bossfight;
+//	private int lastHealth;
+//	private boolean bossfight;
 	
 	public static boolean PAUSE = false;
 	public static boolean CHANGE_TO_NEXT_MAP = false;
@@ -49,12 +46,12 @@ public class GameScreen implements Screen, ContactListener {
 	
 	@Override
 	public void show() {
-		Main.getGraphicsManager().getGameCamera().setMessureSpeed(false);
+		checkLayers();
 		PAUSE = false;
 		CHANGE_TO_NEXT_MAP = false;
-		Main.getSessionData().booleans.remove("finished_" + Main.getConfigFile().get("gameprogress") + "_animation");
-		Main.getSessionData().booleans.remove("finished_" + Main.getConfigFile().get("gameprogress"));
 		Main.getGraphicsManager().getGameCamera().clearSequences();
+		Main.getGraphicsManager().getGameCamera().setMessureSpeed(false);
+		
 		
 		Main.getAssetLoader().unloadAllAtlases();
 		Main.getAssetLoader().unloadAllParticleEffects();
@@ -62,24 +59,24 @@ public class GameScreen implements Screen, ContactListener {
 		Main.getAssetLoader().unloadAllTextures();
 		Main.getAssetLoader().unloadAllTiledMaps();
 		Main.getAssetLoader().load(
-				new String[] {"projectiles", "doors", "story_imgs"}, // atlases
-				new String[] {"enemy", "enemy_shield", "enemy_boss", "player", "love_particle", "pickups"}, // animations
-				new String[] {}, // SCML animations
-				new String[] {"gamebackground", "platform"}, // textures
+				new String[] {}, // atlases
+				new String[] {}, // animations
+				new String[] {"player"}, // SCML animations
+				new String[] {}, // textures
 				new String[] {}, // shaders
-				new String[] {"blood"}, // particleeffects
+				new String[] {}, // particleeffects
 				new String[] {}, // musics
-				new String[] {"jump", "key_pickup", "menu_hover", "normalprojectile_hit", "specialprojectile_hit", "step", "player_damage"}, // sounds
-				new String[] {} // maps
+				new String[] {}, // sounds
+				new String[] {"map_0"} // maps
 		);
-//		Main.getMapManager().load();
+		Main.getMapManager().load("map_0");
 
 		Main.getGraphicsManager().getGameCamera().zoom = 1f;
-
 		Main.getWorldManager().getWorld().setContactListener(this);
 		
-		gameUI = new GameUI();
-		gameUI.createUI();
+//		gameUI = new GameUI();
+//		gameUI.createUI();
+		Main.getGraphicsManager().getStage().clear();
 	}
 
 	@Override
@@ -93,7 +90,7 @@ public class GameScreen implements Screen, ContactListener {
 		Main.getWorldManager().render();
 		
 		updateGame();
-		gameUI.updateUI();
+//		gameUI.updateUI();
 	}
 
 	@Override
@@ -293,7 +290,30 @@ public class GameScreen implements Screen, ContactListener {
 	
 	
 	
+	public void checkLayers() {
+		if(!Main.getGraphicsManager().getRenderManager().hasLayer("foreground")) {
+			Main.getGraphicsManager().getRenderManager().addLayer("foreground", 2);
+			Main.getGraphicsManager().getRenderManager().getLayer("foreground").setProjectionMatrix(Main.getGraphicsManager().getGameCamera().combined);
+			Main.getGraphicsManager().getRenderManager().addLayer("entities", 3);
+			Main.getGraphicsManager().getRenderManager().getLayer("entities").setProjectionMatrix(Main.getGraphicsManager().getGameCamera().combined);
+			Main.getGraphicsManager().getRenderManager().addLayer("midground", 4);
+			Main.getGraphicsManager().getRenderManager().getLayer("midground").setProjectionMatrix(Main.getGraphicsManager().getGameCamera().combined);
+			Main.getGraphicsManager().getRenderManager().addLayer("background", 5);
+			Main.getGraphicsManager().getRenderManager().getLayer("background").setProjectionMatrix(Main.getGraphicsManager().getGameCamera().combined);
+		}
+		
+		Main.getGraphicsManager().getRenderManager().getLayer("foreground").setEnabled(true);
+		Main.getGraphicsManager().getRenderManager().getLayer("entities").setEnabled(true);
+		Main.getGraphicsManager().getRenderManager().getLayer("midground").setEnabled(true);
+		Main.getGraphicsManager().getRenderManager().getLayer("background").setEnabled(true);
+	}
 	
+	public void disableLayers() {
+		Main.getGraphicsManager().getRenderManager().getLayer("foreground").setEnabled(false);
+		Main.getGraphicsManager().getRenderManager().getLayer("entities").setEnabled(false);
+		Main.getGraphicsManager().getRenderManager().getLayer("midground").setEnabled(false);
+		Main.getGraphicsManager().getRenderManager().getLayer("background").setEnabled(false);
+	}
 	
 	
 	public void showPauseTable() {
@@ -466,10 +486,12 @@ public class GameScreen implements Screen, ContactListener {
 						Main.getScreenManager().changeScreenTo("game");
 					}
 					else if(event.getListenerActor().equals(mainMenu2TextButton)) {
+						disableLayers();
 						changeToMenu = 1;
 						// TODO add hide game over
 					}
 					else if(event.getListenerActor().equals(mainMenuTextButton)) {
+						disableLayers();
 						changeToMenu = 1;
 						hidePauseTable();
 					}

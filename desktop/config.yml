@@ -1,9 +1,10 @@
-#Sat Oct 24 21:48:45 CEST 2015
+#Sun Oct 25 02:19:59 CET 2015
 lang=EN
 window_width=1080
 key_moveleft=29
 window_fullscreen=false
 key_moveright=32
+key_jump=62
 window_vsync=false
 mastervolume=0.8
 window_hdpi_macosx=false
