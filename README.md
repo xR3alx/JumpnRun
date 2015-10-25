@@ -1,9 +1,9 @@
 # JumpnRun
 
 
-<strong>Tiled Map</strong>
+# Tiled Map
 
-
+**Layern der Ebenen**
 Die Reihenfolge in Tiled entspricht nicht der Reihenfolge wie sie im Spiel gezeichnet werden.
 Damit eine Ebene gezeichnet muss sie einem Layer hinzugefügt werden. Dazu wählt man die Ebene in Tiled aus und fügt die Eigenschaft "layer" hinzu. Als Wert kann dann "foreground", "entities"(Entities werden autmatisch zu dieser hinzugefügt), "midground" oder "background" sein. Wenn man einen neuen Layer erstellen muss, dann muss man neben "layer" und als Wert den Namen des neuen Layer auch noch die Eigenschaft "layer_priority" und einen Ganzzahlwert hinzufügen.
 Der Layer "foreground" hat die Priorität 2, "entities" hat 3, "midground" hat 4 und "background" hat 5.
