@@ -2,6 +2,16 @@
 
 ### Tiled Map
 
+**Ambient Light**
+
+Unter dem Menüpunkt "Karte" und dort "Karteneigenschaften" muss die Eigenschaft "rgba" hinzugefügt werden.
+Als Wert muss dann eine Zahl zwischen 0 und 1 (0.01, 0.2 etc.) erscheinen in folgendem Schema: R,G,B,A
+Dabei werden die Buchstaben mit dem entsprechenden Wert ersetzt.
+R - Rot
+G - Grün
+B - Blau
+A - Transparenz (Alpha)
+
 **Layern der Ebenen**
 
 Die Reihenfolge in Tiled entspricht nicht der Reihenfolge wie sie im Spiel gezeichnet werden.
