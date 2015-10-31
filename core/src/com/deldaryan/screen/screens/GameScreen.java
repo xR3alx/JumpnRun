@@ -309,17 +309,12 @@ public class GameScreen implements Screen, ContactListener {
 			Main.getGraphicsManager().getRenderManager().getLayer("background").setProjectionMatrix(Main.getGraphicsManager().getGameCamera().combined);
 		}
 		
-		Main.getGraphicsManager().getRenderManager().getLayer("foreground").setEnabled(true);
-		Main.getGraphicsManager().getRenderManager().getLayer("entities").setEnabled(true);
-		Main.getGraphicsManager().getRenderManager().getLayer("midground").setEnabled(true);
-		Main.getGraphicsManager().getRenderManager().getLayer("background").setEnabled(true);
+		Main.getGraphicsManager().getRenderManager().enableAll();
 	}
 	
 	public void disableLayers() {
-		Main.getGraphicsManager().getRenderManager().getLayer("foreground").setEnabled(false);
-		Main.getGraphicsManager().getRenderManager().getLayer("entities").setEnabled(false);
-		Main.getGraphicsManager().getRenderManager().getLayer("midground").setEnabled(false);
-		Main.getGraphicsManager().getRenderManager().getLayer("background").setEnabled(false);
+		Main.getGraphicsManager().getRenderManager().disableAll();
+		Main.getGraphicsManager().getRenderManager().getLayer("ui").setEnabled(true);
 	}
 	
 	

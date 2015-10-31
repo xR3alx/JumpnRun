@@ -120,8 +120,9 @@ public class MapManager {
 				if(Main.getGraphicsManager().getRenderManager().hasLayer(layerName)) {
 					renderLayer = Main.getGraphicsManager().getRenderManager().getLayer(layerName); 
 				}
-				else {
-					renderLayer = Main.getGraphicsManager().getRenderManager().addLayer(layerName, 99);
+				else if(layer.getProperties().containsKey("layer_priority")) {
+					int layerPriority = Integer.parseInt(layer.getProperties().get("layer_priority").toString());
+					renderLayer = Main.getGraphicsManager().getRenderManager().addLayer(layerName, layerPriority);
 				}
 				
 				
