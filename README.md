@@ -5,7 +5,7 @@
 **Ambient Light**
 
 Unter dem Menüpunkt "Karte" und dort "Karteneigenschaften" muss die Eigenschaft "rgba" hinzugefügt werden.
-Als Wert muss dann eine Zahl zwischen 0 und 1 (0.01, 0.2 etc.) erscheinen in folgendem Schema: R,G,B,A
+Als Wert muss dann eine Zahl zwischen 0 und 1 (z.B. 0.01, 0.2...) erscheinen in folgendem Schema: R,G,B,A
 Dabei werden die Buchstaben mit dem entsprechenden Wert ersetzt.
 * R - Rot
 * G - Grün
