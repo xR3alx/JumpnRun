@@ -31,4 +31,5 @@ Um Kollision hinzuzufügen muss in Tiled die Ebene "collision" erstellt werden. 
 **Entities**
 
 Um Entities(Spieler, Gegner, Sammelbares) hinzuzufügen muss in Tiled die Ebene "entities" erstellt werden. Dort müssen(!) dann Rechtecke hinzugefügt werden. Als Typ setzt man dann den Entitytyp.
+Der Entitytyp muss bei der standard Eigenschaft "Typ" eingetragen werden.
 * Spieler(Player): 0
